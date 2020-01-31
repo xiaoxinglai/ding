@@ -89,6 +89,8 @@ ding-config.properties
 ```aidl
 
 
+    @Autowired
+    DingTalkClientImpl dingTalkClient;
 
     /**
      * 普通消息通知
