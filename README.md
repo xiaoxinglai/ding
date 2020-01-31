@@ -13,7 +13,7 @@
   
   
 ###### 2.带异常信息的消息通知
-![d3](./img/d3.png "发送带异常的消息")
+![d3](https://github.com/xiaoxinglai/ding/blob/master/img/d3.png "发送带异常的消息")
 
 异常消息的通知，常用于异常情况的通知，会打印抛出异常的类名 方法名 和行号，异常原因。 
 同时 点击查看异常栈详情 会跳转到查看异常栈详情的页面，查看整个异常栈。  
@@ -451,24 +451,24 @@ http://localhost:8080/ding/?type=自己在配置中定义的ding.send.type的值
 
 
 
-##设计概要
+## 设计概要
 
 ### 功能设计
-![d1](./img/d1.png "功能设计")
+![d1](https://github.com/xiaoxinglai/ding/blob/master/img/d1.png "功能设计")
 
 
 ### 配置设计
-![d5](./img/d5.png "配置设计")
+![d5](https://github.com/xiaoxinglai/ding/blob/master/img/d5.png "配置设计")
 
 ### 手动调用接口发送时的参数设计
 
-![d6](./img/d6.png) 
+![d6](https://github.com/xiaoxinglai/ding/blob/master/img/d6.png) 
 
 
 ### 注解参数设计
 
-![d7](./img/d7.png)
+![d7](https://github.com/xiaoxinglai/ding/blob/master/img/d7.png)
 
 ### 流程
-![d8](./img/d8.png)
+![d8](https://github.com/xiaoxinglai/ding/blob/master/img/d8.png)
 
