@@ -9,13 +9,13 @@
 ## 效果如下
 
 ###### 1.普通的消息通知
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233532637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233532637.png)
 
 普通消息通知，艾特的人，在发送的时候可以填入参数，如果不填，默认选择该机器人的配置文件上的联系人。 常用于手动发送 或者 不需要发送异常信息的场景。
   
   
 ###### 2.带异常信息的消息通知
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233551748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233551748.png)
 
 异常消息的通知，常用于异常情况的通知，会打印抛出异常的类名 方法名 和行号，异常原因。 
 同时 点击查看异常栈详情 会跳转到查看异常栈详情的页面，查看整个异常栈。  
@@ -32,7 +32,7 @@
 点击后跳转至查看异常栈页面 ，异常信息会保存最近的50条，淘汰最近最少查看的异常栈。
 
 形如：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233612399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233612399.png)
 ps:这个可以修改成跳转到自己公司搭建的统一日志平台 这样就没有保存的条数限制了。 
 
 
@@ -439,10 +439,10 @@ http://localhost:8080/ding/?type=自己在配置中定义的ding.send.type的值
 比如说 http://localhost:8080/ding/?type=demo 
 
 看到返回  
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233654757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233654757.png)
 同时看到自己配置的群内发出消息   
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233708363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233708363.png)
 就是生效了。 
 
 
@@ -453,14 +453,14 @@ http://localhost:8080/ding/?type=自己在配置中定义的ding.send.type的值
 ## 设计概要
 
 ### 功能设计
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233736566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233736566.png)
 
 ### 配置设计
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020013123372439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020013123372439.png)
 ### 手动调用接口发送时的参数设计
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233748667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233748667.png)
 ### 注解参数设计
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233812896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233812896.png)
 ### 流程
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233826443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIwMDA5MDE1,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200131233826443.png)
