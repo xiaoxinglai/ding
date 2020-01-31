@@ -438,11 +438,11 @@ http://localhost:8080/ding/?type=自己在配置中定义的ding.send.type的值
 比如说 http://localhost:8080/ding/?type=demo 
 
 看到返回  
-![d9](./img/d9.png)
+![d9](https://github.com/xiaoxinglai/ding/blob/master/img/d9.png)
 
 同时看到自己配置的群内发出消息   
 
-![d10](./img/d10.png) 
+![d10](https://github.com/xiaoxinglai/ding/blob/master/img/d10.png) 
 
 就是生效了。 
 
