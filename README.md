@@ -433,6 +433,43 @@ public @interface Ding {
 ```
 
 
+
+### 20200510 升级为springboot版本
+简化配置  
+
+依赖包为
+```aidl
+              <dependency>
+                      <groupId>com.souche</groupId>
+                      <artifactId>ding-boot-starter</artifactId>
+                      <version>1.0.0-SNAPSHOT</version>
+                  </dependency>
+```
+
+在配置文件yml里面 
+
+```
+
+ding:
+ postUrl: http://localhost:8080
+ bizList:
+  gateway: #dingSend方法发送的时候要传入的type 
+   url: https://oapi.dingtalk.com/robot/send?xxxxx
+   secret:  xxxx
+   name: 175125744xx,175125744xx
+   localException: 0
+   logName: gateway #打印日志时候的标示
+  financeCounter:
+   url: https://oapi.dingtalk.com/robot/send?xxx
+   secret:  xxx
+   name: 175125744xx
+   localException: 0
+   logName: financeCounter
+
+```
+
+
+
 3.当项目配置好之后，访问该url  
 http://localhost:8080/ding/?type=自己在配置中定义的ding.send.type的值 
 

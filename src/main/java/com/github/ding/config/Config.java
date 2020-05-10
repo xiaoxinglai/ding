@@ -3,17 +3,18 @@ package com.github.ding.config;
 import com.github.ding.config.cache.ExceptionCache;
 import com.github.ding.config.model.Ding;
 import com.github.ding.config.model.DingConfig;
-import com.github.ding.config.utils.ConfigurationUtils;
-import com.github.ding.server.BanServer;
-import com.github.ding.server.FileServer;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+//import com.souche.ding.request.httpserver.HttpServer;
 
 /**
  * @ClassName Config
@@ -22,13 +23,8 @@ import java.util.concurrent.Executors;
  * @Description 启动配置
  * @Version 1.0
  */
-@Component
-public class Config implements InitializingBean {
+public class Config {
 
-    @Autowired
-    BanServer banServer;
-    @Autowired
-    FileServer fileServer;
 
     private ExecutorService sendThreadExecutor;
 
@@ -46,16 +42,10 @@ public class Config implements InitializingBean {
         this.exceptionCache.put(batchNo, ex);
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        //初始化配置
-        initConfig();
+
+    public void doInit() throws Exception {
         //初始化业务线列表
         initBizType();
-        //初始化静默列表
-        initBan();
-        //初始化归档列表
-        initFile();
         //初始化线程池大小 每个机器人一个线程
         initThreadPool();
         //启动http响应服务 以便接受静默或者归档请求
@@ -63,23 +53,11 @@ public class Config implements InitializingBean {
     }
 
     private void initThreadPool() {
-        sendThreadExecutor = Executors.newFixedThreadPool(dingConfig.getList().size());
+        sendThreadExecutor = new ThreadPoolExecutor(dingConfig.getList().size(), dingConfig.getList().size(),
+                60L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(2000));
     }
 
-
-    private void initFile() {
-        //todo 新增拓展接口，以便于可以拓展成从其他地方获取归档列表
-        fileServer.initFile();
-    }
-
-
-    /**
-     * 初始化禁默列表
-     */
-    private void initBan() {
-        //todo 新增拓展接口，以便于可以拓展成从其他地方获取禁默列表
-        banServer.initBan();
-    }
 
 
     public Ding getTypeDing(String biz) {
@@ -103,39 +81,23 @@ public class Config implements InitializingBean {
     /**
      * 读取配置 进行初始化
      */
-    private void initConfig() {
-        new ConfigurationUtils("/ding-config.properties");
-        String url = ConfigurationUtils.getPropertiesByKey("ding.post.url");
-        Map<String, String> tags = ConfigurationUtils.getPropertiesByPre("ding.send");
-        HashMap<String, Map<String, String>> bizType = new HashMap<String, Map<String, String>>(16);
-        for (Map.Entry<String, String> keyValue : tags.entrySet()) {
-            String[] keys = keyValue.getKey().split("\\.");
-            String biz = keys[keys.length - 1];
-            if (biz.equals("url")) {
-                continue;
-            }
-            String type = keys[keys.length - 2];
-            if (bizType.get(biz) == null) {
-                Map<String, String> bizValue = new HashMap<String, String>();
-                bizValue.put(type, keyValue.getValue());
-                bizType.put(biz, bizValue);
-            } else {
-                bizType.get(biz).put(type, keyValue.getValue());
-            }
+    public void initConfigByProperties(DingProperties dingProperties) {
+        String url =dingProperties.getPostUrl();
+        List<Ding> dings = new ArrayList();
+        for (Map.Entry<String, com.github.ding.config.DingConfig> kv : dingProperties.getBizList()
+                .entrySet()) {
+            Ding ding = new Ding();
+            ding.setBizType(kv.getKey());
+            com.github.ding.config.DingConfig type =kv.getValue();
+            ding.setUrl(type.getUrl());
+            ding.setName(type.getName());
+            ding.setSecret(type.getSecret());
+            ding.setLocalException(type.getLocalException());
+            ding.setLogName(type.getLogName());
+            dings.add(ding);
+
         }
 
-        List<Ding> dings = new ArrayList();
-        for (Map.Entry<String, Map<String, String>> stringMapEntry : bizType.entrySet()) {
-            Ding ding = new Ding();
-            ding.setBizType(stringMapEntry.getKey());
-            Map<String, String> type = stringMapEntry.getValue();
-            ding.setUrl(type.get("url"));
-            ding.setName(Arrays.asList(type.get("name").split(",")));
-            ding.setSecret(type.get("secret"));
-            ding.setLocalException(type.get("localException"));
-            ding.setLogName(type.get("logName"));
-            dings.add(ding);
-        }
         DingConfig dingConfig = new DingConfig();
         dingConfig.setUrl(url);
         dingConfig.setList(dings);

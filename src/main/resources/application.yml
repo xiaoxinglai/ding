@@ -1,0 +1,20 @@
+##
+##
+#ding:
+# postUrl: http://localhost:8080
+# bizList:
+#  gateway:
+#   url: https://oapi.dingtalk.com/robot/send?access_token=3c5a93ca08eb0de3b13340edd55368ef2520117df50f560967feaa1a0f73608b
+#   secret:  SEC0aec8bbaf94ccb51072228001379e3b863dcdd01150dce42e65750253a317c94
+#   name: 17512574426,17512574424
+#   localException: 0
+#   bizType: gateway
+#  financeCounter:
+#   url: https://oapi.dingtalk.com/robot/send?access_token=3c5a93ca08eb0de3b13340edd55368ef2520117df50f560967feaa1a0f73608b
+#   secret:  SEC0aec8bbaf94ccb51072228001379e3b863dcdd01150dce42e65750253a317c94
+#   name: 17512574426
+#   localException: 0
+#   logName: financeCounter
+
+#
+#
